@@ -6,7 +6,6 @@ import {
   Put,
   Post,
   Body,
-  Query,
 } from '@nestjs/common';
 import { Movie } from './entities/movie.entity';
 import { MoviesService } from './movies.service';
@@ -40,9 +39,6 @@ export class MoviesController {
     @Param('id') movieId: string,
     @Body() modifyData: { name: string; director: string },
   ) {
-    return {
-      modifyMovie: movieId,
-      ...modifyData,
-    };
+    return this.moviesService.modify(movieId, modifyData);
   }
 }
